@@ -1,10 +1,9 @@
 #include <iostream>
 #include <string>
-#include <conio.h>   // для _getch()
+#include <conio.h> 
 
 using namespace std;
 
-// ================== Person ==================
 class Person {
     string _name;
 public:
@@ -12,7 +11,6 @@ public:
     string name() const { return _name; }
 };
 
-// ================== Position =================
 class Position {
     string _title;
 public:
@@ -20,7 +18,6 @@ public:
     string title() const { return _title; }
 };
 
-// ================== Employee =================
 class Employee {
     Person _person;
     Position _position;
@@ -33,7 +30,6 @@ public:
     }
 };
 
-// ================== Employer =================
 class Employer {
     struct Office {
         bool _free;
@@ -58,8 +54,6 @@ public:
         delete[] _office;
     }
 
-    // ====== ВПРАВА 5.4 ======
-    // Реакція на відсутність вакантних посад
     void hire(const Person& person, const Position& position) {
         size_t i = 0;
         while (i < _volume && !_office[i]._free)
@@ -75,8 +69,6 @@ public:
         cout << "Employee hired successfully.\n";
     }
 
-    // ====== ВПРАВА 5.5 ======
-    // Реалізація звільнення робочого місця
     void fire(const size_t i) {
         if (i >= _volume) {
             cout << "Invalid position number!\n";
@@ -107,10 +99,9 @@ public:
     }
 };
 
-// ================== Calc =====================
 struct Calc {
-    double _a; // акумулятор
-    double _x; // регістр x
+    double _a;
+    double _x;
 
     double add() { return _a += _x; }
     double sub() { return _a -= _x; }
@@ -124,15 +115,12 @@ struct Calc {
     }
 };
 
-// ====== ВПРАВА 5.11 ======
-// Утиліта виконання операцій калькулятора
 typedef double (Calc::* Operation)();
 
 double exe(Calc& c, Operation op) {
     return (c.*op)();
 }
 
-// ================== main =====================
 int main() {
     Employer company(3);
 
